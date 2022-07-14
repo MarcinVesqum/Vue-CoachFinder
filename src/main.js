@@ -11,13 +11,13 @@ import BaseButton from './components/UI/BaseButton.vue';
 
 const app = createApp(App)
 
-app.component('base-card', BaseCard);
-app.component('base-badge', BaseBadge);
-app.component('base-button', BaseButton);
 
 app.use(store);
 app.component('router-view', RouterView);
 app.component('router-link', RouterLink);
 app.use(router);
 
+app.component('base-card', BaseCard);
+app.component('base-badge', BaseBadge);
+app.component('base-button', BaseButton);
 app.mount('#app');
