@@ -28,18 +28,22 @@ export default {
     methods: {
         submitData() {
             this.formIsValid = true;
-            if (this.emailInput === '' || !this.emailInput.includes('@') || this.messageInput === '') {
+            if (
+              this.emailInput === '' || 
+              !this.emailInput.includes('@') || 
+              this.messageInput === ''
+              ) {
                 this.formIsValid = false;
                 return;
             }
-
-            const formData = {
-                email: this.emailInput.val,
-                message: this.messageInput.val
-            }
-            this.$emit('save-data-contact', formData)
-        }
-    }
+            this.$store.dispatch('requests/contactCoach', {
+              email: this.emailInput,
+              message: this.messageInput,
+              coachId: this.$route.params.id
+            });
+            this.$router.replace('/coaches')
+        },
+    },
 }
 </script>
 
