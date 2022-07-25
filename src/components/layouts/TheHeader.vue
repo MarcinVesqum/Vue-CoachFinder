@@ -1,29 +1,47 @@
 <template>
-    <header>
-        <h1>
-            <router-link to="/">Finde a Coach</router-link>
-        </h1>
-        <nav>
-            <ul>
-                <li>
-                    <router-link to="/coaches">All Coaches</router-link>
-                </li>
-                <li>
-                    <router-link to="/requests">Requests</router-link>
-                </li>
-            </ul>
-            <div>
-
-            </div>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <h1>
+        <router-link to="/">Find a Coach</router-link>
+      </h1>
+      <ul>
+        <li>
+          <router-link to="/coaches">All Coaches</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <router-link to="/requests">Requests</router-link>
+        </li>
+        <li v-else>
+          <router-link to="/auth">Login</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <base-button @click="logout">Logout</base-button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
+<script>
+export default {
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.replace('/coaches');
+    }
+  }
+}
+</script>
 
 <style scoped>
 header {
   width: 100%;
-  height: 8rem;
+  height: 5rem;
   background-color: #3d008d;
   display: flex;
   justify-content: center;
@@ -60,10 +78,10 @@ h1 a.router-link-active {
 }
 
 header nav {
-  width: 70%;
+  width: 90%;
   margin: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 

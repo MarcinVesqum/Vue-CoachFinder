@@ -98,6 +98,25 @@ menu {
   margin: 0;
 }
 
+.dialog-enter-from,
+.dialog-leave-to  {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.8);
+}
+.dialog-enter-active {
+  transition: all .7s ease-out;
+}
+.dialog-enter-to,
+.dialog-leave-from  {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.dialog-leave-active {
+  transition: all .7s ease-in;
+}
+
+
 @media (min-width: 768px) {
   dialog {
     left: calc(50% - 20rem);

@@ -1,5 +1,5 @@
 <template>
-    <base-dialog :show="!!error" title="An error" @close="handlerError" ></base-dialog>
+<div>
     <base-card>
         <header>
             <h2>Requests</h2>
@@ -7,18 +7,12 @@
         <div v-if="isLoading">
             <base-spinner></base-spinner>
         </div>
-        <ul v-else-if="hasRequests && !isLoading">
-            <request-item 
-            v-for="req in receivedRequests" 
-            :key="req.id"
-            :id="req.id"
-            :email="req.userEmail"
-            :message="req.message"
+        <ul>
 
-            ></request-item>
         </ul>
         <h3 v-else>You haven't received any requests yet!</h3>
     </base-card>
+</div>
 </template>
 
 <script>
